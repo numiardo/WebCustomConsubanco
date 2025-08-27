@@ -1,272 +1,88 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Numia – Demo JB Consubanco</title>
-  <link rel="icon" type="image/png" href="images/N.png" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
-  <style>
-    :root{
-      --primario:#045cbc;
-      --secundario:#fc6c0c;
-      --texto:#1f2530;
-    }
-    body{ font-family:'Roboto',Arial,sans-serif; background:#f7f7f7; color:var(--texto); }
-    .brand-img{ max-height:80px; }
-    .carousel-item img{ object-fit:cover; width:100%; height:340px; border-radius:.7rem; }
-    @media (max-width:991px){ .carousel-item img{ height:180px; } }
-    @media (max-width:767px){ .carousel-item img{ height:140px; } }
-    .card.ad-card{
-      border-radius:1.2rem; box-shadow:0 4px 18px rgba(0,0,0,.08);
-      transition:transform .18s, box-shadow .18s; min-height:380px; display:flex; flex-direction:column;
-    }
-    .card.ad-card:hover{ transform:translateY(-4px) scale(1.02); box-shadow:0 8px 32px rgba(0,0,0,.12); }
-    .card-img-top-holder{ height:180px; overflow:hidden; background:#fff; border-top-left-radius:1.2rem; border-top-right-radius:1.2rem; }
-    .card-img-top-holder img{ width:100%; height:100%; object-fit:cover; }
-    .ad-card .card-title{ font-weight:700; color:var(--primario); text-align:center; margin:.75rem 0 .25rem; }
-    .ad-card .card-text{ text-align:center; opacity:.9; }
-    .btn-primary{ background-color:var(--primario)!important; border-color:var(--primario)!important; }
-    .btn-primary:hover{ background-color:#034a99!important; border-color:#034a99!important; }
-    .btn-outline-primary{ color:var(--primario)!important; border-color:var(--primario)!important; }
-    .btn-outline-primary:hover{ background-color:var(--primario)!important; color:#fff!important; }
-    journey-builder-chat{ position:fixed; left:24px; top:160px; z-index:10000; }
-    @media (max-width:991px){ journey-builder-chat{ top:200px; } }
-    .rates-section{ display:flex; gap:2rem; align-items:stretch; margin:36px 0 0 0; width:100%; flex-wrap:wrap; }
-    .rates-col-table, .rates-col-side{ background:#fff; border-radius:1.1rem; box-shadow:0 2px 12px rgba(0,0,0,0.07); padding:2rem 1.6rem 1.6rem 1.7rem; }
-    .rates-col-table{ min-width:340px; flex:2 1 540px; max-width:1000px; display:flex; flex-direction:column; }
-    .rates-col-side{ min-width:220px; flex:1 1 320px; max-width:420px; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; }
-    .rates-col-side .bi{ font-size:2.6rem; color:var(--primario); margin-bottom:.7rem; }
-    .rates-col-side h5{ color:var(--primario); font-weight:700; margin-bottom:.5rem; font-size:1.2rem; }
-    .rates-col-side p{ color:#444; font-size:1.07rem; font-weight:500; margin-bottom:1.2rem; opacity:.93; }
-    .rates-col-side .btn{ background:var(--primario); border:none; color:#fff; font-weight:700; border-radius:24px; padding:.7rem 2.1rem; font-size:1.07rem; }
-    .rates-tab-btn{ padding:.7rem 0; border:2px solid #d1def6; border-radius:9px; font-weight:700; font-size:1.06rem; background:#fff; color:var(--primario); margin-bottom:0; transition:background .16s, color .16s, border-color .16s; min-width:70px; }
-    .rates-tab-btn.active, .rates-tab-btn:focus{ background:var(--primario); color:#fff; border-color:var(--primario); }
-    .rates-table{ width:100%; border-collapse:separate; border-spacing:0; background:#fff; border-radius:.8rem; overflow:hidden; margin-top:.7rem; }
-    .rates-table th, .rates-table td{ padding:12px 18px; font-size:1.04rem; text-align:left; }
-    .rates-table th{ color:var(--primario); background:#eef3fb; border:none; font-size:1.08rem; font-weight:700; text-align:center; letter-spacing:.02em; }
-    .rates-table tr:not(:last-child){ border-bottom:1px solid #d8e6fb; }
-    .rates-table tr:nth-child(3){ background:#f5f8fe; }
-    .rates-table td{ color:#222; font-weight:500; text-align:center; vertical-align:middle; }
-    .rates-table td:first-child, .rates-table th:first-child{ text-align:left; }
-    @media (max-width:1300px){ .rates-col-table{ min-width:0; flex-basis:400px; } .rates-col-side{ min-width:0; } }
-    @media (max-width:991px){ .rates-section{ flex-direction:column; gap:1.4rem; } .rates-col-table, .rates-col-side{ min-width:0; max-width:100%; } .rates-col-side{ align-items:flex-start; padding-top:1.2rem; } }
-  </style>
-</head>
-<body class="d-flex flex-column min-vh-100">
-  <header class="bg-white shadow-sm py-2 mb-0">
-    <div class="container">
-      <div class="d-flex justify-content-between align-items-center">
-        <a href="index.html" class="d-block" aria-label="Numia">
-          <img src="images/numia.png" alt="Numia" class="img-fluid brand-img" />
-        </a>
-        <a href="#" class="d-block" aria-label="Consubanco">
-          <img src="images/logoconsubanco.png" alt="Consubanco" class="img-fluid brand-img" />
-        </a>
-      </div>
-      <p class="lead mt-2 mb-0 text-dark text-start" style="font-size:1rem;">Numia experiencia asistida por IA con el toque humano</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar Sesión - Numia Consubanco</title>
+    <link rel="icon" type="image/png" href="images/N.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/login.css" rel="stylesheet" />
+  <link href="css/chat-window-responsive.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="login-container">
+      <main class="login-box">
+        <div class="login-header">
+          <img
+            src="images/logoconsubanco.png"
+            alt="Consubanco"
+            class="img-fluid"
+          />
+          <h1 class="h4 mt-3 mb-3 fw-bold text-secondary">Iniciar Sesión</h1>
+        </div>
+
+        <form id="loginForm" class="login-form">
+          <div class="form-floating">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="nombre@ejemplo.com"
+              required
+            />
+            <label for="email">Correo electrónico</label>
+          </div>
+
+          <div class="form-floating">
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Contraseña"
+              required
+            />
+            <label for="password">Contraseña</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Ingresar</button>
+
+          <div class="forgot-password">
+            <a href="#" class="text-decoration-none"
+              >¿Olvidaste tu contraseña?</a
+            >
+          </div>
+        </form>
+      </main>
+
+      <footer class="login-footer">
+        <small>&copy; 2025 Numia. Todos los derechos reservados.</small>
+      </footer>
     </div>
-  </header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm border-bottom" style="z-index:1050;">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Menu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-center" id="navbarMain">
-        <ul class="navbar-nav mb-2 mb-lg-0">
-          <li class="nav-item dropdown px-2">
-            <a class="nav-link dropdown-toggle fw-semibold" href="#" id="cuentasDropdown" data-bs-toggle="dropdown">
-              <i class="bi bi-wallet2 me-1"></i>Cuentas
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="cuentasDropdown">
-              <li><a class="dropdown-item" href="#"><i class="bi bi-phone me-2"></i>Cuenta Digital</a></li>
-              <li><a class="dropdown-item" href="#"><i class="bi bi-cash-coin me-2"></i>Cuenta Nómina</a></li>
-              <li><a class="dropdown-item" href="#"><i class="bi bi-emoji-smile me-2"></i>Cuenta Kids</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown px-2">
-            <a class="nav-link dropdown-toggle fw-semibold" href="#" id="tarjetasDropdown" data-bs-toggle="dropdown">
-              <i class="bi bi-credit-card-2-front me-1"></i>Tarjetas
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="tarjetasDropdown">
-              <li><a class="dropdown-item" href="#"><i class="bi bi-credit-card-2-front me-2"></i>Crédito</a></li>
-              <li><a class="dropdown-item" href="#"><i class="bi bi-credit-card me-2"></i>Débito</a></li>
-              <li><a class="dropdown-item" href="#"><i class="bi bi-card-heading me-2"></i>Prepagada</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown px-2">
-            <a class="nav-link dropdown-toggle fw-semibold" href="#" id="creditosDropdown" data-bs-toggle="dropdown">
-              <i class="bi bi-cash-stack me-1"></i>Créditos
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="creditosDropdown">
-              <li><a class="dropdown-item" href="#"><i class="bi bi-currency-dollar me-2"></i>Préstamo Personal</a></li>
-              <li><a class="dropdown-item" href="#"><i class="bi bi-car-front me-2"></i>Crédito de Auto</a></li>
-              <li><a class="dropdown-item" href="#"><i class="bi bi-house-door me-2"></i>Crédito Hipotecario</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown px-2">
-            <a class="nav-link dropdown-toggle fw-semibold" href="#" id="inversionesDropdown" data-bs-toggle="dropdown">
-              <i class="bi bi-bar-chart-line me-1"></i>Inversiones
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="inversionesDropdown">
-              <li><a class="dropdown-item" href="#"><i class="bi bi-piggy-bank me-2"></i>CETES</a></li>
-              <li><a class="dropdown-item" href="#"><i class="bi bi-graph-up-arrow me-2"></i>Fondos de Inversión</a></li>
-              <li><a class="dropdown-item" href="#"><i class="bi bi-calendar2-week me-2"></i>Plazo Fijo</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown px-2">
-            <a class="nav-link dropdown-toggle fw-semibold" href="#" id="segurosDropdown" data-bs-toggle="dropdown">
-              <i class="bi bi-shield-check me-1"></i>Seguros
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="segurosDropdown">
-              <li><a class="dropdown-item" href="#"><i class="bi bi-truck-front me-2"></i>Auto</a></li>
-              <li><a class="dropdown-item" href="#"><i class="bi bi-heart-pulse me-2"></i>Vida</a></li>
-              <li><a class="dropdown-item" href="#"><i class="bi bi-hospital me-2"></i>Gastos Médicos</a></li>
-              <li><a class="dropdown-item" href="#"><i class="bi bi-house-heart me-2"></i>Hogar</a></li>
-            </ul>
-          </li>
-        </ul>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/login.js"></script>
+    <script src="/js/bundle.js"></script>
+
+    <div style="position: fixed; bottom: 4em; right: 24px; z-index: 9999">
+        <journey-builder-chat
+          window_title="Chat"
+          flow_id="cd295c4e-28b8-466c-baff-e59fa1efecbf"
+          host_url="https://api.journeybuilder.numia.co"
+          api_key="sk-QN1c7JQ60Jf4evFiBd4l_zplMaL1LNuLRpK0QYzDn4c"
+          width="400"
+          height="500"
+          chat_position="top-left"
+          allow_to_send_imgs="false"
+        ></journey-builder-chat>
       </div>
     </div>
-  </nav>
-  <div class="container mb-4">
-    <div id="carouselMain" class="carousel slide shadow-sm rounded-3" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="images/Carrusel 1.png" class="d-block w-100" alt="Promo 1">
-          <div class="carousel-caption d-none d-md-block">
-            <h5 class="fw-bold display-6" style="text-shadow: 0 2px 12px rgba(0,0,0,0.36)">¡Lo más hot!</h5>
-            <p class="fs-4">Usa tu tarjeta de crédito digital y recibe hasta un <strong>20% de cashback</strong></p>
-            <a href="#" class="btn btn-primary btn-lg rounded-pill mt-2 px-4 fw-bold">Conoce más</a>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="images/Carrusel 2.png" class="d-block w-100" alt="Promo 2">
-          <div class="carousel-caption d-none d-md-block">
-            <h5 class="fw-bold display-6">Banca digital</h5>
-            <p class="fs-4">Accede a tu banca en línea y administra tus productos 24/7</p>
-            <a href="#" class="btn btn-outline-light btn-lg rounded-pill mt-2 px-4 fw-bold">Regístrate aquí</a>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="images/Carrusel 3.png" class="d-block w-100" alt="Promo 3">
-          <div class="carousel-caption d-none d-md-block">
-            <h5 class="fw-bold display-6">Préstamos numia</h5>
-            <p class="fs-4">Consolida tus deudas y obtén las mejores tasas del mercado</p>
-            <a href="#" class="btn btn-primary btn-lg rounded-pill mt-2 px-4 fw-bold">Simula tu crédito</a>
-          </div>
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselMain" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
-        <span class="visually-hidden">Anterior</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselMain" data-bs-slide="next">
-        <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
-        <span class="visually-hidden">Siguiente</span>
-      </button>
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      </div>
-    </div>
-  </div>
-  <main class="container mb-5">
-    <div class="row g-4 justify-content-center main-cards">
-      <div class="col-lg-3 col-md-6">
-        <div class="card ad-card h-100 text-center">
-          <div class="card-img-top-holder"><img src="images/Tarjeta de credito.jpg" alt="Tarjeta de Crédito"></div>
-          <div class="card-body">
-            <h5 class="card-title">Agenda una cita</h5>
-            <p class="card-text">Agenda una cita con un agente especialista y recibe atención remota o presencial.</p>
-            <button class="btn btn-primary rounded-pill px-4 mt-2 fw-bold" disabled>Agendar</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="card ad-card h-100 text-center">
-          <div class="card-img-top-holder"><img src="images/Apertura de cuenta.png" alt="Cuenta Nómina"></div>
-          <div class="card-body">
-            <h5 class="card-title">Apertura de cuenta nómina</h5>
-            <p class="card-text">Recibe tu sueldo y accede a promociones, descuentos y retiros sin costo en miles de cajeros.</p>
-            <button class="btn btn-outline-primary rounded-pill px-4 mt-2 fw-bold" disabled>Comenzar</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="card ad-card h-100 text-center">
-          <div class="card-img-top-holder"><img src="images/Prestamo personal.png" alt="Préstamo Personal"></div>
-          <div class="card-body">
-            <h5 class="card-title">Préstamos personales</h5>
-            <p class="card-text">Soluciona, planea y disfruta: obtén tu préstamo con tasas preferenciales y pagos flexibles.</p>
-            <button class="btn btn-primary rounded-pill px-4 mt-2 fw-bold" disabled>Simular préstamo</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="card ad-card h-100 text-center">
-          <div class="card-img-top-holder"><img src="images/seguros.png" alt="Seguros"></div>
-          <div class="card-body">
-            <h5 class="card-title">Seguros</h5>
-            <p class="card-text">Tu tranquilidad asegurada: protege auto, hogar, salud y vida.</p>
-            <button class="btn btn-outline-primary rounded-pill px-4 mt-2 fw-bold" disabled>Conoce más</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="rates-section mt-5 mb-4">
-      <div class="rates-col-table">
-        <div class="d-flex gap-3 mb-2">
-          <button class="rates-tab-btn active" id="tabDivisas" onclick="showRatesTab('divisas')">Divisas</button>
-          <button class="rates-tab-btn" id="tabTasas" onclick="showRatesTab('tasas')">Tasas</button>
-        </div>
-        <table class="rates-table" id="tablaDivisas">
-          <thead>
-            <tr><th>Divisa</th><th>Compra</th><th>Venta</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Dólar USD</td><td>17.12</td><td>17.45</td></tr>
-            <tr><td>Euro</td><td>18.65</td><td>19.15</td></tr>
-            <tr><td>Libra esterlina</td><td>21.15</td><td>21.75</td></tr>
-          </tbody>
-        </table>
-        <table class="rates-table" id="tablaTasas" style="display:none;">
-          <thead>
-            <tr><th></th><th>Tasa Bruta al<br><span style="font-size:1rem;font-weight:700;">02/06/2025</span></th><th>Tasa Bruta<br>Anual</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>CETE Diario</td><td>8.12 %</td><td>9.18 %</td></tr>
-            <tr><td>CETE Anualizado</td><td>8.12 %</td><td>9.18 %</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="rates-col-side">
-        <i class="bi bi-piggy-bank"></i>
-        <h5 class="mb-1">Tus inversiones</h5>
-        <p><strong>Saldo CETES:</strong> $75,000.00 MXN<br><span style="font-size:.95rem; color:var(--primario); font-weight:700;">¡Estás generando $570/mes solo en intereses!</span></p>
-        <p>¿Quieres diversificar? Simula en 2 clicks tus ganancias potenciales.</p>
-        <button class="btn" disabled>Invertir ahora</button>
-      </div>
-    </div>
-  </main>
-  <footer class="bg-light text-center py-3 mt-auto border-top">
-    <small>&copy; Numia. Todos los derechos reservados.</small>
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    function showRatesTab(tab){
-      const tabDivisas=document.getElementById('tabDivisas');
-      const tabTasas=document.getElementById('tabTasas');
-      const tablaDivisas=document.getElementById('tablaDivisas');
-      const tablaTasas=document.getElementById('tablaTasas');
-      if(tab==='divisas'){tabDivisas.classList.add('active');tabTasas.classList.remove('active');tablaDivisas.style.display='';tablaTasas.style.display='none';}
-      else{tabDivisas.classList.remove('active');tabTasas.classList.add('active');tablaDivisas.style.display='none';tablaTasas.style.display='';}
-    }
-  </script>
-  <script src="https://cdn.jsdelivr.net/gh/debmedia/numiajb-widget@1.0.6/dist/build/static/js/bundle.min.js"></script>
-  <journey-builder-chat window_title="Base de Conocimiento Consubanco 0800" flow_id="f262c872-2baf-418a-8266-9c02c1268596" host_url="https://journeybuilder.numia.co" api_key="sk-C1zusTLx4oQQ-QXLhzP-dgV9kr3eaeIVJYJqAYShUQY"></journey-builder-chat>
-</body>
+  </body>
 </html>
