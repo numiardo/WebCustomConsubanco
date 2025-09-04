@@ -64,10 +64,3 @@
 .forgot-password a:hover {
     text-decoration: underline;
 }
-
-.login-footer {
-    text-align: center;
-    color: white;
-    margin-top: 2rem;
-    padding: 1rem;
-}

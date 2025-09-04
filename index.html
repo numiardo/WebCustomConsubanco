@@ -1,88 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Iniciar Sesión - Numia Consubanco</title>
-    <link rel="icon" type="image/png" href="images/N.png" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link href="css/styles.css" rel="stylesheet" />
-    <link href="css/login.css" rel="stylesheet" />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Consubanco PUC - Journey Builder by Numia</title>
+  <link rel="icon" type="image/png" href="images/N.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+  <link href="css/login.css" rel="stylesheet" />
   <link href="css/chat-window-responsive.css" rel="stylesheet" />
-  </head>
-  <body>
-    <div class="login-container">
-      <main class="login-box">
-        <div class="login-header">
-          <img
-            src="images/logoconsubanco.png"
-            alt="Consubanco"
-            class="img-fluid"
-          />
-          <h1 class="h4 mt-3 mb-3 fw-bold text-secondary">Iniciar Sesión</h1>
+</head>
+
+<body>
+  <div class="login-container">
+    <main class="login-box">
+      <div class="login-header">
+        <img src="images/logoconsubanco.png" alt="Consubanco" class="img-fluid" />
+        <h1 class="h4 mt-3 mb-3 fw-bold text-secondary">Iniciar Sesión</h1>
+      </div>
+
+      <form id="loginForm" class="login-form">
+        <div class="form-floating">
+          <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required />
+          <label for="email">Correo electrónico</label>
         </div>
 
-        <form id="loginForm" class="login-form">
-          <div class="form-floating">
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              placeholder="nombre@ejemplo.com"
-              required
-            />
-            <label for="email">Correo electrónico</label>
-          </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="password" placeholder="Contraseña" required />
+          <label for="password">Contraseña</label>
+        </div>
 
-          <div class="form-floating">
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              placeholder="Contraseña"
-              required
-            />
-            <label for="password">Contraseña</label>
-          </div>
+        <button type="submit" class="btn btn-primary">Ingresar</button>
 
-          <button type="submit" class="btn btn-primary">Ingresar</button>
+        <div class="forgot-password">
+          <a href="#" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
+        </div>
+      </form>
+    </main>
+  </div>
 
-          <div class="forgot-password">
-            <a href="#" class="text-decoration-none"
-              >¿Olvidaste tu contraseña?</a
-            >
-          </div>
-        </form>
-      </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/login.js"></script>
+  <script src="/js/bundle.js"></script>
 
-      <footer class="login-footer">
-        <small>&copy; 2025 Numia. Todos los derechos reservados.</small>
-      </footer>
-    </div>
+  <div style="position: fixed; bottom: 4em; right: 24px; z-index: 9999">
+    <journey-builder-chat window_title="Ayuda Consubanco" flow_id="7e59e350-de9f-4c3a-a80b-1f6a31b978e3"
+      host_url="https://api.journeybuilder.numia.co" api_key="sk-QN1c7JQ60Jf4evFiBd4l_zplMaL1LNuLRpK0QYzDn4c"
+      width="400" height="500" chat_position="top-left" allow_to_send_imgs="false"></journey-builder-chat>
+  </div>
+  </div>
+</body>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/login.js"></script>
-    <script src="/js/bundle.js"></script>
-
-    <div style="position: fixed; bottom: 4em; right: 24px; z-index: 9999">
-        <journey-builder-chat
-          window_title="Chat"
-          flow_id="cd295c4e-28b8-466c-baff-e59fa1efecbf"
-          host_url="https://api.journeybuilder.numia.co"
-          api_key="sk-QN1c7JQ60Jf4evFiBd4l_zplMaL1LNuLRpK0QYzDn4c"
-          width="400"
-          height="500"
-          chat_position="top-left"
-          allow_to_send_imgs="false"
-        ></journey-builder-chat>
-      </div>
-    </div>
-  </body>
 </html>
